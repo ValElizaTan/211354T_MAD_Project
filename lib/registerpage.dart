@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project/model.dart';
+//Class
+import 'model.dart';
+
+//Files
+import 'loginpage.dart';
+import 'profilepage.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -25,25 +31,35 @@ class RegisterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.lightBlue[100],
-      appBar: AppBar(
-        title: Text('Register Page'),
-      ),
+      backgroundColor: Colors.grey[300],
+      // appBar: AppBar(
+      //   title: Text('Register Page'),
+      // ),
       body: Center(
         child: Column(
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.only(top: 20.0),
+              //Register text
+              margin: const EdgeInsets.only(top: 50),
               padding: const EdgeInsets.all(5),
-              height: 300,
-              width: 500,
+              child: Text(
+                'Register',
+                style: TextStyle(color: Colors.black, fontSize: 30),
+              ),
+            ),
+            Container(
+              //Profile Image
+              padding: const EdgeInsets.all(20),
+              height: 200,
+              width: 200,
               child: Image(
-                image: AssetImage('images/login_bg.jpg'),
+                image: AssetImage('images/Profile-Male.png'),
                 fit: BoxFit.contain,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              //Email Text field
+              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
               child: TextField(
                 controller: email,
                 keyboardType: TextInputType.emailAddress,
@@ -51,17 +67,18 @@ class RegisterPage extends StatelessWidget {
                   hintText: 'Email',
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w300, color: Colors.black87),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[700], width: 3),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red[800], width: 3),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              //Password Text field
+              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
               child: TextField(
                 controller: pwd,
                 keyboardType: TextInputType.name,
@@ -69,17 +86,18 @@ class RegisterPage extends StatelessWidget {
                   hintText: 'Password',
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w300, color: Colors.black87),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[700], width: 3),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red[800], width: 3),
                   ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              //Confirm Password Text field
+              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
               child: TextField(
                 controller: cfmpwd,
                 keyboardType: TextInputType.name,
@@ -87,26 +105,33 @@ class RegisterPage extends StatelessWidget {
                   hintText: 'Confirm Password',
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w300, color: Colors.black87),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blue),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[700], width: 3),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red[800], width: 3),
                   ),
                 ),
               ),
             ),
-            RaisedButton(
-              color: Colors.blueAccent,
-              child: Text('Register', style: TextStyle(color: Colors.white)),
-              onPressed: () {
-                // initialize DATA
-                MyData data = MyData(email.text, pwd.text, cfmpwd.text);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage(data: data)),
-                );
-              },
+            Padding(
+              //Register Button
+              padding: const EdgeInsets.all(40),
+              child: RaisedButton(
+                color: Colors.white,
+                child: Text('Register', style: TextStyle(color: Colors.black)),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.grey, width: 2)),
+                onPressed: () {
+                  // initialize DATA
+                  MyData data = MyData(email.text, pwd.text, cfmpwd.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginPage()),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -115,81 +140,3 @@ class RegisterPage extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatefulWidget {
-  final MyData data;
-  bool togglecolour = true;
-
-  LoginPage({@required this.data});
-
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.toggle_off_outlined),
-        onPressed: () =>
-            setState(() => widget.togglecolour = !widget.togglecolour),
-      ),
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            if (widget.data.email == "superhero@mail.com") ...[
-              SizedBox(height: 50),
-              Text('Welcome, Superhero',
-                  style: TextStyle(color: Colors.black, fontSize: 30)),
-              SizedBox(height: 50),
-              CircleAvatar(
-                backgroundColor:
-                    widget.togglecolour ? Colors.blueAccent : Colors.redAccent,
-                radius: 110,
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundImage: AssetImage('images/superhero.jpg'),
-                ),
-              ),
-              SizedBox(height: 30),
-              RaisedButton(
-                color: Colors.blueAccent,
-                child: Text('Back', style: TextStyle(color: Colors.white)),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ] else ...[
-              Text('Welcome, Guest',
-                  style: TextStyle(color: Colors.black, fontSize: 30)),
-              SizedBox(height: 50),
-              CircleAvatar(
-                backgroundColor:
-                    widget.togglecolour ? Colors.blueAccent : Colors.redAccent,
-                radius: 110,
-                child: CircleAvatar(
-                  radius: 100,
-                  backgroundImage: AssetImage('images/images.jpeg'),
-                ),
-              ),
-              SizedBox(height: 30),
-              RaisedButton(
-                color: Colors.blueAccent,
-                child: Text('Back', style: TextStyle(color: Colors.white)),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
-          ],
-        ),
-      ),
-    );
-  }
-}
