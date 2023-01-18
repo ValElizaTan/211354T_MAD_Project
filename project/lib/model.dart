@@ -3,5 +3,5 @@ class MyData {
   final String email;
   final String pwd;
   final String cfmpwd;  
-  MyData(this.email, this.pwd,{this.cfmpwd, this.name});
+  MyData(this.email, this.pwd,[this.cfmpwd, this.name]);
 }

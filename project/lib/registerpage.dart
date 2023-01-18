@@ -11,14 +11,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FirstPage(),
+      home: RegisterPage(),
     );
   }
 }
 
-class FirstPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
   final TextEditingController email = TextEditingController();
   final TextEditingController pwd = TextEditingController();
+  final TextEditingController cfmpwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class FirstPage extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.lightBlue[100],
       appBar: AppBar(
-        title: Text('Login Page'),
+        title: Text('Register Page'),
       ),
       body: Center(
         child: Column(
@@ -45,9 +46,9 @@ class FirstPage extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: TextField(
                 controller: email,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  hintText: 'ID',
+                  hintText: 'Email',
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w300, color: Colors.black87),
                   enabledBorder: OutlineInputBorder(
@@ -65,7 +66,25 @@ class FirstPage extends StatelessWidget {
                 controller: pwd,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
-                  hintText: 'PWD',
+                  hintText: 'Password',
+                  hintStyle: TextStyle(
+                      fontWeight: FontWeight.w300, color: Colors.black87),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.blue),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.yellow),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                controller: cfmpwd,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  hintText: 'Confirm Password',
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w300, color: Colors.black87),
                   enabledBorder: OutlineInputBorder(
@@ -79,13 +98,13 @@ class FirstPage extends StatelessWidget {
             ),
             RaisedButton(
               color: Colors.blueAccent,
-              child: Text('Login', style: TextStyle(color: Colors.white)),
+              child: Text('Register', style: TextStyle(color: Colors.white)),
               onPressed: () {
                 // initialize DATA
-                MyData data = MyData(email.text, pwd.text);
+                MyData data = MyData(email.text, pwd.text, cfmpwd.text);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage(data: data)),
+                  MaterialPageRoute(builder: (context) => LoginPage(data: data)),
                 );
               },
             ),
@@ -96,17 +115,17 @@ class FirstPage extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   final MyData data;
   bool togglecolour = true;
 
-  HomePage({@required this.data});
+  LoginPage({@required this.data});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
