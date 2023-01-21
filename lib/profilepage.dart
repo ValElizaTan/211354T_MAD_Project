@@ -22,11 +22,6 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.toggle_off_outlined),
-        onPressed: () =>
-            setState(() => widget.togglecolour = !widget.togglecolour),
-      ),
       appBar: AppBar(
         title: Text('Home Page'),
       ),
@@ -36,6 +31,23 @@ class _ProfilePageState extends State<ProfilePage> {
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home),
+                    label: ('Home'),
+                    backgroundColor: Colors.green),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.search),
+                    label: ('Search'),
+                    backgroundColor: Colors.yellow),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: ('Profile'),
+                  backgroundColor: Colors.blue,
+                ),
+              ],
+            ),
             if (widget.data.email == "michael@mail.com") ...[
               SizedBox(height: 50),
               Text('Welcome, Michael',

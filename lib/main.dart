@@ -83,17 +83,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[  
           BottomNavigationBarItem(  
             icon: Icon(Icons.home),  
-            title: Text('Home'),  
+            label: ('Home'),  
             backgroundColor: Colors.green  
           ),  
           BottomNavigationBarItem(  
             icon: Icon(Icons.search),  
-            title: Text('Search'),  
+            label: ('Search'),  
             backgroundColor: Colors.yellow  
           ),  
           BottomNavigationBarItem(  
             icon: Icon(Icons.person),  
-            title: Text('Profile'),  
+            label: ('Profile'),  
             backgroundColor: Colors.blue,  
           ),  
         ],  
