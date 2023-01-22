@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 
 //Files
-import 'registerpage.dart';
+import 'homepage.dart';
 import 'profilepage.dart';
+import 'bus.dart';
+import 'aboutus.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,12 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bus App',
-      home: AboutUsPage(),
+      home: AlertPage(),
     );
   }
 }
 
-class AboutUsPage extends StatelessWidget {
+class AlertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,20 +29,37 @@ class AboutUsPage extends StatelessWidget {
       backgroundColor: Colors.grey[300],
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-              margin: const EdgeInsets.all(20),
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 10,
-                ),
-                borderRadius: BorderRadius.circular(12),
-                image: const DecorationImage(
-                  image: AssetImage('images/bus.png'),
-                fit: BoxFit.contain,
+              margin: const EdgeInsets.only(top: 25),
+              //padding: const EdgeInsets.all(10),
+              height: 400.0,
+              width: 550.0,
+              color: Colors.transparent,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.pink[300],
+                    borderRadius: BorderRadius.all(Radius.circular(35.0))),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                      "You have reached",
+                      style: TextStyle(fontSize: 35, color: Colors.black),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Your Destination!",
+                      style: TextStyle(fontSize: 35, color: Colors.black),
+                      textAlign: TextAlign.center,
+                    ),
+                    ],
+                  ),
                 ),
               ),
             ),

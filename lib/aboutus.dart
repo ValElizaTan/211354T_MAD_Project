@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 
 //Files
-import 'registerpage.dart';
+import 'homepage.dart';
 import 'profilepage.dart';
+import 'bus.dart';
+import 'aboutus.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +31,7 @@ class AboutUsPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Container(
-              //Login text
+              //Abuot Us text
               margin: const EdgeInsets.only(top: 50),
               padding: const EdgeInsets.all(5),
               child: Text(
@@ -44,7 +46,7 @@ class AboutUsPage extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.black,
-                  width: 10,
+                  width: 2,
                 ),
                 borderRadius: BorderRadius.circular(12),
                 image: const DecorationImage(
