@@ -21,27 +21,27 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  static List<BusModel> main_bus_list = [
-    BusModel(10),
-    BusModel(72),
-    BusModel(74),
-    BusModel(87),
-    BusModel(101),
-    BusModel(102),
-    BusModel(112),
-    BusModel(113),
-    BusModel(119),
-    BusModel(136),
-    BusModel(151),
-    BusModel(324),
+  static List<RoadNameModel> main_road_list = [
+    RoadNameModel('Hougang Ctrl Int'),
+    RoadNameModel('The Midtown'),
+    RoadNameModel('Blk 465A'),
+    RoadNameModel('Opp Blk 475B'),
+    RoadNameModel('Bef Blk 471B'),
+    RoadNameModel('Opp Serangoon Sec Sch'),
+    RoadNameModel('Blk 355'),
+    RoadNameModel('Opp The Midtown'),
+    RoadNameModel('Hougang Ctrl Int'),
   ];
 
   //creating the list to display and filter
-  List<BusModel> display_list = List.from(main_bus_list);
+  List<RoadNameModel> display_list = List.from(main_road_list);
    
 
   void updateList(String value) {
     //This is the function that will filter the list
+    setState(() {
+      display_list = main_road_list.where((element) => element.road_name?.toLowerCase().contains(value)).toList();
+    });
   }
 
   @override
@@ -56,14 +56,15 @@ class _SearchPageState extends State<SearchPage> {
           children: [
             //Search field
             TextField(
+              onChanged: (value) => updateList(value),
               style: TextStyle(fontSize: 20),
               decoration: InputDecoration(
                 hintText: 'Search...',
                 suffixIcon: Icon(Icons.search, color: Colors.black),
                 filled: true,
-                fillColor: Colors.blue[300],
+                fillColor: Colors.white,
                 border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(10.0),
                     borderSide: BorderSide.none),
               ),
             ),
@@ -71,7 +72,8 @@ class _SearchPageState extends State<SearchPage> {
               child: ListView.builder(
                 itemCount: display_list.length,
                 itemBuilder: (context, index) => ListTile(
-                  title: Text('${display_list[index].bus_num}'),
+                  contentPadding: EdgeInsets.all(5.0),
+                  title: Text('${display_list[index].road_name}', textAlign: TextAlign.start,),
                 ),
               ),
             ),

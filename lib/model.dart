@@ -8,8 +8,13 @@ class MyData {
 }
 
 class BusModel{
-  int bus_num;
+  String bus_num;
 
   BusModel(this.bus_num);
 }
 
+class RoadNameModel{
+  String road_name;
+
+  RoadNameModel(this.road_name);
+}
