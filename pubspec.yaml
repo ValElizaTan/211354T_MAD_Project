@@ -21,9 +21,13 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-flappy_search_bar: ^1.7.2
   flutter:
     sdk: flutter
+# dependencies come below here
+  flappy_search_bar: 1.4.1 
+    
+  
+
 
 
   # The following adds the Cupertino Icons font to your application.

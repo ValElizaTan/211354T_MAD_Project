@@ -3,12 +3,13 @@ class MyData {
   final String email;
   final String pwd;
   final String cfmpwd;  
+
   MyData(this.email, this.pwd,[this.cfmpwd, this.name]);
 }
 
-class Post {
-  final String title;
-  final String body;
+class BusModel{
+  int bus_num;
 
-  Post(this.title, this.body);
+  BusModel(this.bus_num);
 }
+
