@@ -16,7 +16,6 @@ class MyApp extends StatelessWidget {
 }
 
 class BusPage extends StatefulWidget {
-
   @override
   State<BusPage> createState() => _BusPageState();
 }
@@ -39,12 +38,13 @@ class _BusPageState extends State<BusPage> {
 
   //creating the list to display and filter
   List<BusModel> display_list = List.from(main_bus_list);
-   
 
   void updateList(String value) {
     //This is the function that will filter the list
     setState(() {
-      display_list = main_bus_list.where((element) => element.bus_num?.toLowerCase().contains(value)).toList();
+      display_list = main_bus_list
+          .where((element) => element.bus_num?.toLowerCase().contains(value))
+          .toList();
     });
   }
 
@@ -73,13 +73,26 @@ class _BusPageState extends State<BusPage> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: display_list.length,
-                itemBuilder: (context, index) => ListTile(
-                  contentPadding: EdgeInsets.all(5.0),
-                  title: Text('${display_list[index].bus_num}', textAlign: TextAlign.start,),
-                ),
-              ),
+              child: display_list.length == 0
+                  ? Center(
+                      child: Text(
+                        'No Results Found',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  : ListView.builder(
+                      itemCount: display_list.length,
+                      itemBuilder: (context, index) => ListTile(
+                        contentPadding: EdgeInsets.all(5.0),
+                        title: Text(
+                          '${display_list[index].bus_num}',
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ),
             ),
           ],
         ),
