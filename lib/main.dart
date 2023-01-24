@@ -6,6 +6,7 @@ import 'model.dart';
 import 'homepage.dart';
 import 'profilepage.dart';
 import 'bus.dart';
+import 'aboutus.dart';
 
 void main() => runApp(MyApp());
 
