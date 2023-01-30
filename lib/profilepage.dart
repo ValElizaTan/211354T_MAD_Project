@@ -5,8 +5,7 @@ import 'model.dart';
 
 //Files
 import 'registerpage.dart';
-import 'loginpage.dart';
-
+import 'editpage.dart';
 
 class ProfilePage extends StatefulWidget {
   final MyData data;
@@ -22,35 +21,15 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            BottomNavigationBar(
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: ('Home'),
-                    backgroundColor: Colors.green),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.search),
-                    label: ('Search'),
-                    backgroundColor: Colors.yellow),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: ('Profile'),
-                  backgroundColor: Colors.blue,
-                ),
-              ],
-            ),
-            if (widget.data.email == "michael@mail.com") ...[
+            if (widget.data.email == "mike@mail.com") ...[
               SizedBox(height: 50),
-              Text('Welcome, Michael',
+              Text('Welcome, Mike',
                   style: TextStyle(color: Colors.black, fontSize: 30)),
               SizedBox(height: 50),
               CircleAvatar(
@@ -63,6 +42,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               SizedBox(height: 30),
+              RaisedButton(
+                color: Colors.blueAccent,
+                child: Text('Back', style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
               RaisedButton(
                 color: Colors.blueAccent,
                 child: Text('Back', style: TextStyle(color: Colors.white)),
@@ -86,12 +78,42 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(height: 30),
               RaisedButton(
                 color: Colors.blueAccent,
+                child: Text('Edit', style: TextStyle(color: Colors.white)),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EditPage()),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Colors.blueAccent,
                 child: Text('Back', style: TextStyle(color: Colors.white)),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
             ],
+            // BottomNavigationBar(
+            //   items: const <BottomNavigationBarItem>[
+            //     BottomNavigationBarItem(
+            //         icon: Icon(Icons.home),
+            //         label: ('Home'),
+            //         backgroundColor: Colors.green),
+            //     BottomNavigationBarItem(
+            //         icon: Icon(Icons.search),
+            //         label: ('Search'),
+            //         backgroundColor: Colors.yellow),
+            //     BottomNavigationBarItem(
+            //       icon: Icon(Icons.person),
+            //       label: ('Profile'),
+            //       backgroundColor: Colors.blue,
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),
