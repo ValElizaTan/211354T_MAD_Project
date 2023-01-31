@@ -5,7 +5,6 @@ import 'model.dart';
 //Files
 import 'profilepage.dart';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -18,7 +17,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class EditPage extends StatelessWidget {
+class EditPage extends StatefulWidget {
+  @override
+  State<EditPage> createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
+  final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController pwd = TextEditingController();
   final TextEditingController cfmpwd = TextEditingController();
@@ -28,7 +33,7 @@ class EditPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
@@ -46,7 +51,7 @@ class EditPage extends StatelessWidget {
               height: 200,
               width: 200,
               child: Image(
-                image: AssetImage('images/Profile-Male.png'),
+                image: AssetImage('images/businessman.png'),
                 fit: BoxFit.contain,
               ),
             ),
@@ -108,20 +113,24 @@ class EditPage extends StatelessWidget {
               ),
             ),
             Padding(
-              //Register Button
+              //Save Chages Button
               padding: const EdgeInsets.all(40),
               child: RaisedButton(
                 color: Colors.white,
-                child: Text('Save Chages', style: TextStyle(color: Colors.black)),
+                child:
+                    Text('Save Chages', style: TextStyle(color: Colors.black)),
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 2)),
                 onPressed: () {
                   // initialize DATA
-                  MyData data = MyData(email.text, pwd.text, cfmpwd.text);
+                  name.text = 'Luke';
+                  email.text = 'Luke@mail.com';
+                  pwd.text = 'pass123';
+                  cfmpwd.text = 'pass123';
+                  MyData data = MyData(email.text, pwd.text);
                   Navigator.pop(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfilePage(data: data,)),
+                    MaterialPageRoute(builder: (context) => ProfilePage(data: data,)),
                   );
                 },
               ),
@@ -132,4 +141,3 @@ class EditPage extends StatelessWidget {
     );
   }
 }
-

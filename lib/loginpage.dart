@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
@@ -108,7 +108,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Container(
-              //Login text
+              //Create Account text
               padding: const EdgeInsets.all(10),
               child: Text(
                 'Don\'t have an account?',
@@ -116,7 +116,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             Padding(
-              //Login Button
+              //Signup Button
               padding: const EdgeInsets.all(10),
               child: RaisedButton(
                 color: Colors.white,
@@ -128,8 +128,7 @@ class LoginPage extends StatelessWidget {
                   MyData data = MyData(email.text, pwd.text);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => RegisterPage()),
+                    MaterialPageRoute(builder: (context) => RegisterPage()),
                   );
                 },
               ),

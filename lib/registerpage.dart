@@ -4,8 +4,6 @@ import 'model.dart';
 
 //Files
 import 'loginpage.dart';
-import 'profilepage.dart';
-
 
 void main() => runApp(MyApp());
 
@@ -14,15 +12,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Bus App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: RegisterPage(),
     );
   }
 }
 
 class RegisterPage extends StatelessWidget {
+  final TextEditingController name = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController pwd = TextEditingController();
   final TextEditingController cfmpwd = TextEditingController();
@@ -32,10 +28,7 @@ class RegisterPage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
-      // appBar: AppBar(
-      //   title: Text('Register Page'),
-      // ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
@@ -55,6 +48,25 @@ class RegisterPage extends StatelessWidget {
               child: Image(
                 image: AssetImage('images/Profile-Male.png'),
                 fit: BoxFit.contain,
+              ),
+            ),
+            Padding(
+              //Email Text field
+              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
+              child: TextField(
+                controller: name,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Name',
+                  hintStyle: TextStyle(
+                      fontWeight: FontWeight.w300, color: Colors.black87),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey[700], width: 3),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red[800], width: 3),
+                  ),
+                ),
               ),
             ),
             Padding(
@@ -123,12 +135,9 @@ class RegisterPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 2)),
                 onPressed: () {
-                  // initialize DATA
-                  MyData data = MyData(email.text, pwd.text, cfmpwd.text);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginPage()),
+                    MaterialPageRoute(builder: (context) => LoginPage()),
                   );
                 },
               ),
@@ -139,4 +148,3 @@ class RegisterPage extends StatelessWidget {
     );
   }
 }
-
