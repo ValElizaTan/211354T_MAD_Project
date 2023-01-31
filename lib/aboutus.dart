@@ -1,5 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 //Class
 import 'model.dart';
 
@@ -8,6 +10,7 @@ import 'homepage.dart';
 import 'profilepage.dart';
 import 'bus.dart';
 import 'aboutus.dart';
+import 'feedback.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +24,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AboutUsPage extends StatelessWidget {
+class AboutUsPage extends StatefulWidget {
+  @override
+  State<AboutUsPage> createState() => _AboutUsPageState();
+}
+
+class _AboutUsPageState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +59,7 @@ class AboutUsPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 image: const DecorationImage(
                   image: AssetImage('images/bus.png'),
-                fit: BoxFit.contain,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
@@ -71,22 +79,20 @@ class AboutUsPage extends StatelessWidget {
                 style: TextStyle(color: Colors.black, fontSize: 25),
               ),
             ),
-            Container(
-              //Contact Number text
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Contact Number',
-                style: TextStyle(color: Colors.black, fontSize: 25),
-              ),
-            ),
-            Container(
-              //Email text
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Email',
-                style: TextStyle(color: Colors.black, fontSize: 25),
-              ),
-            ),
+            ElevatedButton(
+                onPressed: () {
+                  launch('tel: +65 83160942');
+                },
+                child: Text("Contact Us")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FeedbackPage()),
+                  );
+                },
+                child: Text("Feedback Us")),
             Container(
               //Developer Info text
               padding: const EdgeInsets.all(15),

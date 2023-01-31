@@ -24,8 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
 # dependencies come below here
+  url_launcher: ^5.4.0
+  flutter_phone_direct_caller: ^1.0.0
+  flutter_email_sender: 4.0.0
   flappy_search_bar: 1.4.1 
-    
   
 
 
