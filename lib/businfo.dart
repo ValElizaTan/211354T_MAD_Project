@@ -57,6 +57,17 @@ class _BusInfoPageState extends State<BusInfoPage> {
           children: [
             //Text field
             Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.close_rounded),
+                      onPressed: () => Navigator.of(context).pop()),
+                ],
+              ),
+            ),
+            //Text field
+            Container(
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10.0))),

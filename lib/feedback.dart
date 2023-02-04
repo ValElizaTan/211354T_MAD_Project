@@ -1,16 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-
-//Class
-import 'model.dart';
-
-//Files
-import 'homepage.dart';
-import 'profilepage.dart';
-import 'bus.dart';
-import 'aboutus.dart';
 
 void main() => runApp(MyApp());
 

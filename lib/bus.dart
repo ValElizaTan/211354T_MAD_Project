@@ -1,7 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
+
+//Flies
+import 'businfo.dart';
 
 void main() => runApp(MyApp());
 
@@ -91,6 +93,12 @@ class _BusPageState extends State<BusPage> {
                           '${display_list[index].bus_num}',
                           textAlign: TextAlign.start,
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BusInfoPage()));
+                        },
                       ),
                     ),
             ),

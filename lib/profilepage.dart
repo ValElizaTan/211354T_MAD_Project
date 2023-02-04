@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:project/loginpage.dart';
 
 //Class
 import 'model.dart';
 
 //Files
-import 'registerpage.dart';
 import 'editpage.dart';
+import 'aboutus.dart';
 
 class ProfilePage extends StatefulWidget {
   final MyData data;
-
-  ProfilePage({@required this.data});
+  ProfilePage({this.data});
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -27,130 +27,92 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[300],
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Container(
-              //Register text
-              margin: const EdgeInsets.only(top: 50),
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                'Profile',
-                style: TextStyle(color: Colors.black, fontSize: 30),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                //Register text
+                margin: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.all(5),
+                child: Text(
+                  'Profile',
+                  style: TextStyle(color: Colors.black, fontSize: 30),
+                ),
               ),
-            ),
-            Container(
-              //Profile Image
-              padding: const EdgeInsets.all(20),
-              height: 200,
-              width: 200,
-              child: Image(
-                image: AssetImage('images/businessman.png'),
-                fit: BoxFit.contain,
+              Container(
+                //Profile Image
+                padding: const EdgeInsets.all(20),
+                height: 200,
+                width: 200,
+                child: Image(
+                  image: AssetImage('images/businessman.png'),
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-            Padding(
-              //Name Text field
-              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-              child: AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(name.text),
-              )
-            ),
-            Padding(
-              //Email Text field
-              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-              child: AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(email.text),
-              )
-            ),
-            Padding(
-              //Password Text field
-              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-              child: AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(pwd.text),
-              )
-            ),
-            Padding(
-              //Confirm Password Text field
-              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-              child: AlertDialog(
-                // Retrieve the text the that user has entered by using the
-                // TextEditingController.
-                content: Text(cfmpwd.text),
-              )
-            ),
-            Padding(
-              //Save Chages Button
-              padding: const EdgeInsets.all(40),
-              child: RaisedButton(
-                color: Colors.white,
-                child:
-                    Text('Save Chages', style: TextStyle(color: Colors.black)),
-                shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey, width: 2)),
-                onPressed: () {
-                  // initialize DATA
-                  MyData data = MyData(email.text, pwd.text, cfmpwd.text);
-                  Navigator.pop(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfilePage(
-                              data: data,
-                            )),
-                  );
-                },
+              if (widget.data.email == "mike@mail.com") ...[
+                SizedBox(height: 50),
+                Text('Welcome, Mike',
+                    style: TextStyle(color: Colors.black, fontSize: 30)),
+              ] else ...[
+                Text('Welcome, Guest',
+                    style: TextStyle(color: Colors.black, fontSize: 30)),
+                SizedBox(height: 50),
+              ],
+              Padding(
+                //Edit Profile Button
+                padding: const EdgeInsets.all(20),
+                child: RaisedButton(
+                  color: Colors.white,
+                  child: Text('Edit Profile',
+                      style: TextStyle(color: Colors.black)),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.grey, width: 2)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditPage()),
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+              Padding(
+                //Edit Profile Button
+                padding: const EdgeInsets.all(5),
+                child: RaisedButton(
+                  color: Colors.white,
+                  child: Text('Login', style: TextStyle(color: Colors.black)),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.grey, width: 2)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                ),
+              ),
+              Padding(
+                //Edit Profile Button
+                padding: const EdgeInsets.all(5),
+                child: RaisedButton(
+                  color: Colors.white,
+                  child: Text('About Us', style: TextStyle(color: Colors.black)),
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(color: Colors.grey, width: 2)),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutUsPage()),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-// if (widget.data.email == "michael@mail.com") ...[
-//               SizedBox(height: 50),
-//               Text('Welcome, Michael',
-//                   style: TextStyle(color: Colors.black, fontSize: 30)),
-//               SizedBox(height: 50),
-//               CircleAvatar(
-//                 radius: 110,
-//                 child: CircleAvatar(
-//                   radius: 100,
-//                   backgroundImage: AssetImage('images/businessman.png'),
-//                 ),
-//               ),
-//               SizedBox(height: 30),
-//               RaisedButton(
-//                 color: Colors.blueAccent,
-//                 child: Text('Back', style: TextStyle(color: Colors.white)),
-//                 onPressed: () {
-//                   Navigator.pop(context);
-//                 },
-//               ),
-//             ] else ...[
-//               Text('Welcome, Guest',
-//                   style: TextStyle(color: Colors.black, fontSize: 30)),
-//               SizedBox(height: 50),
-//               CircleAvatar(
-//                 radius: 110,
-//                 child: CircleAvatar(
-//                   radius: 100,
-//                   backgroundImage: AssetImage('images/women.png'),
-//                 ),
-//               ),
-//               SizedBox(height: 30),
-//               RaisedButton(
-//                 color: Colors.blueAccent,
-//                 child: Text('Back', style: TextStyle(color: Colors.white)),
-//                 onPressed: () {
-//                   Navigator.pop(context);
-//                 },
-//               ),
-//             ],
