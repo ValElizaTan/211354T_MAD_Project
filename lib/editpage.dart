@@ -18,15 +18,16 @@ class MyApp extends StatelessWidget {
 }
 
 class EditPage extends StatefulWidget {
+  String name, email, pwd;
+  EditPage({this.name, this.email, this.pwd});
   @override
   State<EditPage> createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController pwd = TextEditingController();
-  final TextEditingController cfmpwd = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController pwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -94,25 +95,6 @@ class _EditPageState extends State<EditPage> {
               ),
             ),
             Padding(
-              //Confirm Password Text field
-              padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-              child: TextField(
-                controller: cfmpwd,
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  hintText: 'Confirm Password',
-                  hintStyle: TextStyle(
-                      fontWeight: FontWeight.w300, color: Colors.black87),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red[800], width: 3),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
               //Save Chages Button
               padding: const EdgeInsets.all(40),
               child: RaisedButton(
@@ -122,16 +104,20 @@ class _EditPageState extends State<EditPage> {
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 2)),
                 onPressed: () {
-                  // initialize DATA
-                  name.text = 'Luke';
-                  email.text = 'Luke@mail.com';
-                  pwd.text = 'pass123';
-                  cfmpwd.text = 'pass123';
-                  MyData data = MyData(email.text, pwd.text);
-                  Navigator.pop(
-                    context,
-                    MaterialPageRoute(builder: (context) => ProfilePage(data: data,)),
-                  );
+                  {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          // Builder for the nextpage
+                          // class's constructor.
+                          builder: (context) => ProfilePage(
+                                // Date as arguments to
+                                // send to next page.
+                                name: name.text,
+                                email: email.text,
+                                pwd: pwd.text,
+                              )),
+                    );
+                  }
                 },
               ),
             ),

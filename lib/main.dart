@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 //Class
 import 'model.dart';
 
@@ -9,31 +8,33 @@ import 'profilepage.dart';
 import 'bus.dart';
 import 'registerpage.dart';
 import 'aboutus.dart';
+import 'alert.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyStatefulWidget(),
+      home: NavBar(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
+class NavBar extends StatefulWidget {
+  
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<NavBar> createState() => _NavBarState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _NavBarState extends State<NavBar> {
   int currentIndex = 0;
   final screens = [
     HomePage(),
     ProfilePage(),
     BusPage(),
     RegisterPage(),
+    AlertPage(),
     AboutUsPage(),
   ];
 
@@ -59,6 +60,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
             label: ('Account'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bus_alert),
+            label: ('About'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),

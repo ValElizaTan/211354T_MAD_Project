@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
@@ -20,19 +19,23 @@ class MyApp extends StatelessWidget {
 }
 
 class LoginPage extends StatefulWidget {
+  String email, pwd;
+  LoginPage({this.email, this.pwd});
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
   // form
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
 
   //text cotnroller
-  final TextEditingController email = TextEditingController();
-  final TextEditingController pwd = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _pwd = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -63,10 +66,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
+                //Name Text field
+                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
+                child: TextFormField(
+                  controller: _name,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Name',
+                    hintStyle: TextStyle(
+                        fontWeight: FontWeight.w300, color: Colors.black87),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red[800], width: 3),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
                 //Email Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: email,
+                  controller: _email,
                   keyboardType: TextInputType.emailAddress,
                   onFieldSubmitted: (value) {
                     //Validator
@@ -96,8 +118,8 @@ class _LoginPageState extends State<LoginPage> {
                 //Password Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: pwd,
-                  keyboardType: TextInputType.name,
+                  controller: _pwd,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     hintStyle: TextStyle(
@@ -121,11 +143,17 @@ class _LoginPageState extends State<LoginPage> {
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      MyData data = MyData(email.text, pwd.text);
-                      Navigator.push(
-                        context,
+                      Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (context) => ProfilePage(data: data)),
+                            // Builder for the nextpage
+                            // class's constructor.
+                            builder: (context) => ProfilePage(
+                                  // Date as arguments to
+                                  // send to next page.
+                                  name: _name.text,
+                                  email: _email.text,
+                                  pwd: _pwd.text,
+                                )),
                       );
                     }
                   },

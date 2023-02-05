@@ -23,15 +23,13 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  
   // form
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
   //text controllers
-  final TextEditingController name = TextEditingController();
-  final TextEditingController email = TextEditingController();
-  final TextEditingController pwd = TextEditingController();
-  final TextEditingController cfmpwd = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _pwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +61,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               Padding(
-                //Email Text field
+                //Name Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: name,
+                  controller: _name,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Name',
@@ -85,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //Email Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: email,
+                  controller: _email,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Email',
@@ -104,29 +102,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 //Password Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: pwd,
+                  controller: _pwd,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                //Confirm Password Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: cfmpwd,
-                  keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                    hintText: 'Confirm Password',
                     hintStyle: TextStyle(
                         fontWeight: FontWeight.w300, color: Colors.black87),
                     enabledBorder: UnderlineInputBorder(
@@ -148,9 +127,17 @@ class _RegisterPageState extends State<RegisterPage> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                    // Navigator to the next page.
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          // Builder for the nextpage
+                          // class's constructor.
+                          builder: (context) => LoginPage(
+                                // Date as arguments to
+                                // send to next page.
+                                email: _email.text,
+                                pwd: _pwd.text,
+                              )),
                     );
                   },
                 ),

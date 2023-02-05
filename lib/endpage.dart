@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
@@ -55,6 +54,19 @@ class _EndPageState extends State<EndPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Close button
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  IconButton(
+                      icon: Icon(Icons.close_rounded),
+                      onPressed: () => Navigator.of(context).pop()),
+                ],
+              ),
+            ),
             //Search field
             TextField(
               onChanged: (value) => updateList(value),

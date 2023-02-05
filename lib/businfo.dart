@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
@@ -55,7 +54,7 @@ class _BusInfoPageState extends State<BusInfoPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //Text field
+            //Close button
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
