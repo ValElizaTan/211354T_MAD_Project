@@ -6,21 +6,11 @@ import 'model.dart';
 import 'registerpage.dart';
 import 'profilepage.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: LoginPage(),
-    );
-  }
-}
-
 class LoginPage extends StatefulWidget {
-  String email, pwd;
-  LoginPage({this.email, this.pwd});
+  final MyData data; //to hold te data passed into this page
+
+  //create a constructor for the page with the data parameter
+  LoginPage({Key key, @required this.data}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -32,9 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   var isLoading = false;
 
   //text cotnroller
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _pwd = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController pwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,29 +55,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                //Name Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: _name,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'Name',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
                 //Email Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: _email,
+                  controller: email,
                   keyboardType: TextInputType.emailAddress,
                   onFieldSubmitted: (value) {
                     //Validator
@@ -118,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                 //Password Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: _pwd,
+                  controller: pwd,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     hintText: 'Password',
@@ -142,20 +112,13 @@ class _LoginPageState extends State<LoginPage> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            // Builder for the nextpage
-                            // class's constructor.
-                            builder: (context) => ProfilePage(
-                                  // Date as arguments to
-                                  // send to next page.
-                                  name: _name.text,
-                                  email: _email.text,
-                                  pwd: _pwd.text,
-                                )),
-                      );
-                    }
+                    // initialize DATA
+                    MyData data = new MyData(email.text, pwd.text);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfilePage(data: data)),
+                    );
                   },
                 ),
               ),

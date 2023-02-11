@@ -1,11 +1,8 @@
-// class MyData {
-//   String name;
-//   String email;
-//   String pwd;
-//   String cfmpwd;
-
-//   MyData(this.email, this.pwd, [this.cfmpwd, this.name]);
-// }
+class MyData {
+  final String email;
+  final String pwd;
+  MyData(this.email, this.pwd);
+}
 
 class BusModel {
   String bus_num;

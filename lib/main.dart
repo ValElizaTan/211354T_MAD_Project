@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
 }
 
 class NavBar extends StatefulWidget {
-  
   @override
   State<NavBar> createState() => _NavBarState();
 }
@@ -30,10 +29,9 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int currentIndex = 0;
   final screens = [
-    HomePage(),
-    ProfilePage(),
-    BusPage(),
     RegisterPage(),
+    BusPage(),
+    HomePage(),
     AlertPage(),
     AboutUsPage(),
   ];
@@ -46,24 +44,20 @@ class _NavBarState extends State<NavBar> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: ('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: ('Profile'),
+            icon: Icon(Icons.account_circle),
+            label: ('Account'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.directions_bus),
             label: ('Bus'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: ('Account'),
+            icon: Icon(Icons.home),
+            label: ('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bus_alert),
-            label: ('About'),
+            label: ('Alert'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
@@ -76,7 +70,7 @@ class _NavBarState extends State<NavBar> {
         iconSize: 40,
         onTap: (index) => setState(() => currentIndex = index),
         elevation: 5,
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[350],
         unselectedIconTheme: IconThemeData(color: Colors.black),
       ),
     );

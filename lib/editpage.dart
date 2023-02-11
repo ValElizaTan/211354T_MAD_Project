@@ -25,9 +25,8 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
-  TextEditingController name = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController pwd = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _pwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +59,7 @@ class _EditPageState extends State<EditPage> {
               //Email Text field
               padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
               child: TextField(
-                controller: email,
+                controller: _email,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   hintText: 'Email',
@@ -79,7 +78,7 @@ class _EditPageState extends State<EditPage> {
               //Password Text field
               padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
               child: TextField(
-                controller: pwd,
+                controller: _pwd,
                 keyboardType: TextInputType.name,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -104,21 +103,14 @@ class _EditPageState extends State<EditPage> {
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey, width: 2)),
                 onPressed: () {
-                  {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          // Builder for the nextpage
-                          // class's constructor.
-                          builder: (context) => ProfilePage(
-                                // Date as arguments to
-                                // send to next page.
-                                name: name.text,
-                                email: email.text,
-                                pwd: pwd.text,
-                              )),
-                    );
-                  }
-                },
+                // initialize DATA
+                MyData data = new MyData(_email.text, _pwd.text);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(data: data)),
+                );
+              },
               ),
             ),
           ],

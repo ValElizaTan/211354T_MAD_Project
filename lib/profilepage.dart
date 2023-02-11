@@ -1,24 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 //Class
 import 'model.dart';
 
 //Files
-import 'homepage.dart';
 import 'editpage.dart';
+import 'main.dart';
 
-class ProfilePage extends StatefulWidget {
-  String name, email, pwd;
-  ProfilePage({this.name, this.email, this.pwd});
+class ProfilePage extends StatelessWidget {
+  final MyData data; //to hold te data passed into this page
 
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _pwd = TextEditingController();
+  //create a constructor for the page with the data parameter
+  ProfilePage({Key key, this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +30,8 @@ class _ProfilePageState extends State<ProfilePage> {
                   children: <Widget>[
                     IconButton(
                         icon: Icon(Icons.logout),
-                        onPressed: () => Navigator.of(context).pop(
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()))),
+                        onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => NavBar()))),
                   ],
                 ),
               ),
@@ -62,61 +55,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               Padding(
-                //Name Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: _name,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'Name',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
                 //Email Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'Email',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
+                child: Text(data.email),
               ),
               Padding(
                 //Password Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: _pwd,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
-                    hintText: 'Password',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
+                child: Text(data.pwd),
               ),
               Padding(
                 //Edit Profile Button

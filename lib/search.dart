@@ -1,7 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
+
+//Files
+import 'bus.dart';
 
 void main() => runApp(MyApp());
 
@@ -88,6 +90,12 @@ class _SearchPageState extends State<SearchPage> {
                           '${display_list[index].road_name}',
                           textAlign: TextAlign.start,
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BusPage()));
+                        },
                       ),
                     ),
             ),

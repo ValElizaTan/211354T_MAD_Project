@@ -1,21 +1,10 @@
 import 'package:flutter/material.dart';
+
 //Class
 import 'model.dart';
 
 //Files
 import 'loginpage.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: RegisterPage(),
-    );
-  }
-}
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -26,10 +15,10 @@ class _RegisterPageState extends State<RegisterPage> {
   // form
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
+
   //text controllers
-  final TextEditingController _name = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _pwd = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController pwd = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,30 +50,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
               Padding(
-                //Name Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: TextFormField(
-                  controller: _name,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    hintText: 'Name',
-                    hintStyle: TextStyle(
-                        fontWeight: FontWeight.w300, color: Colors.black87),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey[700], width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.red[800], width: 3),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
                 //Email Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: _email,
+                  controller: email,
                   keyboardType: TextInputType.emailAddress,
+                  onFieldSubmitted: (value) {
+                    //Validator
+                  },
+                  validator: (value) {
+                    if (value.isEmpty ||
+                        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(value)) {
+                      return 'Please enter a valid email!';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Email',
                     hintStyle: TextStyle(
@@ -102,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //Password Text field
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
-                  controller: _pwd,
+                  controller: pwd,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     hintText: 'Password',
@@ -127,17 +108,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
-                    // Navigator to the next page.
-                    Navigator.of(context).push(
+                    // initialize DATA
+                    MyData data = new MyData(email.text, pwd.text);
+                    Navigator.push(
+                      context,
                       MaterialPageRoute(
-                          // Builder for the nextpage
-                          // class's constructor.
-                          builder: (context) => LoginPage(
-                                // Date as arguments to
-                                // send to next page.
-                                email: _email.text,
-                                pwd: _pwd.text,
-                              )),
+                          builder: (context) => LoginPage(data: data)),
                     );
                   },
                 ),
