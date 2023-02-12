@@ -5,18 +5,6 @@ import 'model.dart';
 //Flies
 import 'businfo.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BusPage(),
-    );
-  }
-}
-
 class BusPage extends StatefulWidget {
   @override
   State<BusPage> createState() => _BusPageState();

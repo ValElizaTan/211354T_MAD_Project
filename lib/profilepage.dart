@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 //Class
 import 'model.dart';
 
@@ -35,52 +34,140 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                //Profile text
-                margin: const EdgeInsets.only(top: 50),
-                padding: const EdgeInsets.all(5),
-                child: Text(
-                  'Profile',
-                  style: TextStyle(color: Colors.black, fontSize: 30),
+              if (data.email == data.email && data.pwd == data.pwd) ...[
+                Container(
+                  //Profile text
+                  margin: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
                 ),
-              ),
-              Container(
-                //Profile Image
-                padding: const EdgeInsets.all(20),
-                height: 200,
-                width: 200,
-                child: Image(
-                  image: AssetImage('images/businessman.png'),
-                  fit: BoxFit.contain,
+                Container(
+                  //Profile Image
+                  padding: const EdgeInsets.all(20),
+                  height: 200,
+                  width: 200,
+                  child: Image(
+                    image: AssetImage('images/businessman.png'),
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              Padding(
-                //Email Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: Text(data.email),
-              ),
-              Padding(
-                //Password Text field
-                padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
-                child: Text(data.pwd),
-              ),
-              Padding(
-                //Edit Profile Button
-                padding: const EdgeInsets.all(20),
-                child: RaisedButton(
-                  color: Colors.white,
-                  child: Text('Edit Profile',
-                      style: TextStyle(color: Colors.black)),
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(color: Colors.grey, width: 2)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditPage()),
-                    );
-                  },
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      //Email Text
+                      padding:
+                          const EdgeInsets.only(left: 90, top: 10),
+                      child: Text(
+                        "Email: ",
+                        style: TextStyle(color: Colors.black, fontSize: 25),
+                      ),
+                    ),
+                    Padding(
+                      //Email Text field
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        data.email,
+                        style: TextStyle(color: Colors.black, fontSize: 25),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+                SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: <Widget>[
+                    Padding(
+                      //Password Text
+                      padding:
+                          const EdgeInsets.only(left: 90, top: 10),
+                      child: Text(
+                        "Password: ",
+                        style: TextStyle(color: Colors.black, fontSize: 25),
+                      ),
+                    ),
+                    Padding(
+                      //Password Text field
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        data.pwd,
+                        style: TextStyle(color: Colors.black, fontSize: 25),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  //Edit Profile Button
+                  padding: const EdgeInsets.all(20),
+                  child: RaisedButton(
+                    color: Colors.white,
+                    child: Text('Edit Profile',
+                        style: TextStyle(color: Colors.black)),
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.grey, width: 2)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditPage()),
+                      );
+                    },
+                  ),
+                ),
+              ] else ...[
+                Container(
+                  //Profile text
+                  margin: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    'Profile',
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
+                ),
+                Container(
+                  //Profile Image
+                  padding: const EdgeInsets.all(20),
+                  height: 200,
+                  width: 200,
+                  child: Image(
+                    image: AssetImage('images/businessman.png'),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Padding(
+                  //Email Text field
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    "Welcome, Guest",
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  //Edit Profile Button
+                  padding: const EdgeInsets.all(20),
+                  child: RaisedButton(
+                    color: Colors.white,
+                    child: Text('Edit Profile',
+                        style: TextStyle(color: Colors.black)),
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(color: Colors.grey, width: 2)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EditPage()),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ],
           ),
         ),

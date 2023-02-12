@@ -9,18 +9,6 @@ import 'profilepage.dart';
 import 'bus.dart';
 import 'aboutus.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: AlertPage(),
-    );
-  }
-}
-
 class AlertPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

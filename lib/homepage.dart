@@ -7,18 +7,6 @@ import 'main.dart';
 import 'startpage.dart';
 import 'endpage.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: HomePage(),
-    );
-  }
-}
-
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -72,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Container(
                     //End Button
-                    padding: const EdgeInsets.only(top:20, bottom:50),
+                    padding: const EdgeInsets.only(top: 20, bottom: 50),
                     child: RaisedButton(
                       color: Colors.white,
                       child: Text('End Destination',
@@ -100,11 +88,11 @@ class _HomePageState extends State<HomePage> {
               'Start Tracking',
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.normal),
             ),
-            onTap:() {
+            onTap: () {
               Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => NavBar()),
-                        );
+                context,
+                MaterialPageRoute(builder: (context) => NavBar()),
+              );
             },
           ),
         ],

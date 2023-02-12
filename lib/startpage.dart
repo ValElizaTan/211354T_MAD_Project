@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
 
+//Files
+import 'main.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -100,6 +103,12 @@ class _StartPageState extends State<StartPage> {
                           '${display_list[index].road_name}',
                           textAlign: TextAlign.start,
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NavBar()));
+                        },
                       ),
                     ),
             ),

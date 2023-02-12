@@ -2,17 +2,8 @@ import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: EndPage(),
-    );
-  }
-}
+//Files
+import 'main.dart';
 
 class EndPage extends StatefulWidget {
   @override
@@ -100,6 +91,12 @@ class _EndPageState extends State<EndPage> {
                           '${display_list[index].road_name}',
                           textAlign: TextAlign.start,
                         ),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NavBar()));
+                        },
                       ),
                     ),
             ),

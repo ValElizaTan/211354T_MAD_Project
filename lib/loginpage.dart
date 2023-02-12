@@ -87,10 +87,18 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.visiblePassword,
                   onFieldSubmitted: (data) {
                     //Validator
+
+                    // r'^
+                    // (?=.*[A-Z])       // should contain at least one upper case
+                    // (?=.*[a-z])       // should contain at least one lower case
+                    // (?=.*?[0-9])      // should contain at least one digit
+                    // (?=.*?[!@#\$&*~]) // should contain at least one Special character
+                    // .{8,}             // Must be at least 8 characters in length
+                    //  $
                   },
                   validator: (data) {
                     if (data.isEmpty ||
-                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>')
+                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                             .hasMatch(data)) {
                       return 'Please enter a valid Password';
                     }
@@ -120,11 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () {
                     // initialize DATA
                     MyData data = new MyData(email.text, pwd.text);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ProfilePage(data: data)),
-                    );
+                    if (_formKey.currentState.validate()) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(data: data),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),

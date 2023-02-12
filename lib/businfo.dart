@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 //Class
 import 'model.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BusInfoPage(),
-    );
-  }
-}
-
 class BusInfoPage extends StatefulWidget {
   @override
   State<BusInfoPage> createState() => _BusInfoPageState();

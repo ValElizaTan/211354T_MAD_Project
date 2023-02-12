@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 //Class
 import 'model.dart';
 
@@ -84,13 +83,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
                   controller: pwd,
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.visiblePassword,
                   onFieldSubmitted: (data) {
                     //Validator
+                    
+                    // r'^
+                    // (?=.*[A-Z])       // should contain at least one upper case
+                    // (?=.*[a-z])       // should contain at least one lower case
+                    // (?=.*?[0-9])      // should contain at least one digit
+                    // (?=.*?[!@#\$&*~]) // should contain at least one Special character
+                    // .{8,}             // Must be at least 8 characters in length
+                    //  $
                   },
                   validator: (data) {
                     if (data.isEmpty ||
-                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>')
+                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                             .hasMatch(data)) {
                       return 'Please enter a valid Password';
                     }

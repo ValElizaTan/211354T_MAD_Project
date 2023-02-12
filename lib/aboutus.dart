@@ -5,18 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'loginpage.dart';
 import 'feedback.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: AboutUsPage(),
-    );
-  }
-}
-
 class AboutUsPage extends StatefulWidget {
   @override
   State<AboutUsPage> createState() => _AboutUsPageState();
