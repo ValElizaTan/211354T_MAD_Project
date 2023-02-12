@@ -28,9 +28,9 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int currentIndex = 0;
   final screens = [
-    HomePage(),
-    BusPage(),
     LoginPage(),
+    BusPage(),
+    HomePage(),
     AlertPage(),
     AboutUsPage(),
   ];
@@ -43,16 +43,16 @@ class _NavBarState extends State<NavBar> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: ('Home'),
+            icon: Icon(Icons.account_circle),
+            label: ('Account'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.directions_bus),
             label: ('Bus'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: ('Account'),
+            icon: Icon(Icons.home),
+            label: ('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bus_alert),

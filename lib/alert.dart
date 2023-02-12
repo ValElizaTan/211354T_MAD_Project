@@ -1,13 +1,4 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-//Class
-import 'model.dart';
-
-//Files
-import 'homepage.dart';
-import 'profilepage.dart';
-import 'bus.dart';
-import 'aboutus.dart';
 
 class AlertPage extends StatelessWidget {
   @override

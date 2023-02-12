@@ -89,14 +89,38 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.normal),
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NavBar()),
-              );
+              showAlertDialog(context);
             },
           ),
         ],
       ),
     );
   }
+}
+
+showAlertDialog(BuildContext context) {
+  // Create button
+  Widget okButton = FlatButton(
+    child: Text("OK", style: TextStyle(fontSize: 15),),
+    onPressed: () {
+      Navigator.of(context).pop();
+    },
+  );
+
+  // Create AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("Alert",style: TextStyle(fontSize: 30),),
+    content: Text("The app will now start tracking to your end destination.", style: TextStyle(fontSize: 20),),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }

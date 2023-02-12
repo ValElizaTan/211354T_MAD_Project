@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Bus App',
-      home: FeedbackPage(),
-    );
-  }
-}
-
 class FeedbackPage extends StatefulWidget {
   @override
   State<FeedbackPage> createState() => _FeedbackPageState();
@@ -59,7 +47,18 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 padding: const EdgeInsets.only(right: 50, left: 50, top: 10),
                 child: TextFormField(
                   controller: email,
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.emailAddress,
+                  onFieldSubmitted: (data) {
+                    //Validator
+                  },
+                  validator: (data) {
+                    if (data.isEmpty ||
+                        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(data)) {
+                      return 'Please enter a valid Email!';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Email',
                     hintStyle: TextStyle(
@@ -121,8 +120,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
-                    _key.currentState.save();
-                    sendEmail(subject.text, body.text, email.text);
+                    if (_key.currentState.validate()) {
+                      _key.currentState.save();
+                      sendEmail(subject.text, body.text, email.text);
+                    }
                   },
                 ),
               ),
