@@ -55,14 +55,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextFormField(
                   controller: email,
                   keyboardType: TextInputType.emailAddress,
-                  onFieldSubmitted: (value) {
+                  onFieldSubmitted: (data) {
                     //Validator
                   },
-                  validator: (value) {
-                    if (value.isEmpty ||
+                  validator: (data) {
+                    if (data.isEmpty ||
                         !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value)) {
-                      return 'Please enter a valid email!';
+                            .hasMatch(data)) {
+                      return 'Please enter a valid Email!';
                     }
                     return null;
                   },
@@ -85,6 +85,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: TextFormField(
                   controller: pwd,
                   keyboardType: TextInputType.name,
+                  onFieldSubmitted: (data) {
+                    //Validator
+                  },
+                  validator: (data) {
+                    if (data.isEmpty ||
+                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>')
+                            .hasMatch(data)) {
+                      return 'Please enter a valid Password';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Password',
                     hintStyle: TextStyle(
@@ -108,13 +119,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   shape: RoundedRectangleBorder(
                       side: BorderSide(color: Colors.grey, width: 2)),
                   onPressed: () {
-                    // initialize DATA
-                    MyData data = new MyData(email.text, pwd.text);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LoginPage(data: data)),
-                    );
+                    if (_formKey.currentState.validate()) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    }
                   },
                 ),
               ),

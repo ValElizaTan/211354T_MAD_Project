@@ -18,8 +18,11 @@ class MyApp extends StatelessWidget {
 }
 
 class EditPage extends StatefulWidget {
-  String name, email, pwd;
-  EditPage({this.name, this.email, this.pwd});
+  final MyData data; //to hold te data passed into this page
+
+  //create a constructor for the page with the data parameter
+  EditPage({Key key, this.data}) : super(key: key);
+  
   @override
   State<EditPage> createState() => _EditPageState();
 }

@@ -7,11 +7,6 @@ import 'registerpage.dart';
 import 'profilepage.dart';
 
 class LoginPage extends StatefulWidget {
-  final MyData data; //to hold te data passed into this page
-
-  //create a constructor for the page with the data parameter
-  LoginPage({Key key, @required this.data}) : super(key: key);
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -60,13 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextFormField(
                   controller: email,
                   keyboardType: TextInputType.emailAddress,
-                  onFieldSubmitted: (value) {
+                  onFieldSubmitted: (data) {
                     //Validator
                   },
-                  validator: (value) {
-                    if (value.isEmpty ||
+                  validator: (data) {
+                    if (data.isEmpty ||
                         !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(value)) {
+                            .hasMatch(data)) {
                       return 'Please enter a valid email!';
                     }
                     return null;
@@ -90,6 +85,17 @@ class _LoginPageState extends State<LoginPage> {
                 child: TextFormField(
                   controller: pwd,
                   keyboardType: TextInputType.visiblePassword,
+                  onFieldSubmitted: (data) {
+                    //Validator
+                  },
+                  validator: (data) {
+                    if (data.isEmpty ||
+                        !RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\><*~]).{8,}/pre>')
+                            .hasMatch(data)) {
+                      return 'Please enter a valid Password';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Password',
                     hintStyle: TextStyle(
